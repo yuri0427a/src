@@ -24,8 +24,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // UserController
 
-Route::get('user/{id}', 'App\Http\Controllers\UserController@show');
+Route::resource('/users', App\Http\Controllers\UserController::class, ['only' => ['show', 'edit', 'update']]);
 
-Route::post('user/{id}/edit', 'App\Http\Controllers\UserController@edit');
 
-Route::put('user/{id}', 'App\Http\Controllers\UserController@update');
+// QuestionController
+
+Route::resource('/questions', App\Http\Controllers\QuestionController::class, ['only' => ['index', 'create', 'show', 'destroy']]);
+
+// CommentController
+
+Route::resource('/comments', App\Http\Controllers\CommentController::class, ['only' => ['index', 'create', 'destroy']]);
+
+
+// AnswerController
+
+Route::resource('/comment_favorites', App\Http\Controllers\CommentFavoriteController::class, ['only' => ['create', 'destroy']]);
+
+
+// VoteController
+
+Route::resource('/votes', App\Http\Controllers\VoteController::class, ['only' => ['index', 'create']]);
