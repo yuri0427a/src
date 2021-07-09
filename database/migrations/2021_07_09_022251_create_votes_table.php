@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommentFavoritesTable extends Migration
+class CreateVotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateCommentFavoritesTable extends Migration
      */
     public function up()
     {
-        Schema::create('comment_favorites', function (Blueprint $table) {
+        Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->biginteger('user_id');
-            $table->biginteger('comment_id');
-
+            $table->biginteger('user_id')->comment('ユーザーID');
+            $table->biginteger('answer_id')->comment('回答ID');
+            $table->integer('poll');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateCommentFavoritesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment_favorites');
+        Schema::dropIfExists('votes');
     }
 }
