@@ -24,8 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // UserController
 
-Route::resource('/users', App\Http\Controllers\UserController::class, ['only' => ['show', 'edit', 'update']]);
-
+Route::get('/user/{id}', [App\Http\Controllers\UserController::class,  "show"])->name("users.show");
 
 // QuestionController
 
