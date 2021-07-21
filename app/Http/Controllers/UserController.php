@@ -1,18 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function show(Request $request, $id)
   {
-      // DBよりBookテーブルの値を全て取得
-      $books = Book::all();
-
-      // 取得した値をビュー「book/index」に渡す
-      return view('book/index', compact('books'));
+    $user = User::find($id);
+    return view('users.show', compact('user'));
   }
 
 }
