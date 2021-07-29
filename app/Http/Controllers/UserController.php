@@ -22,6 +22,17 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validator =$request->validate([
+            'name' => 'required|string|max:50',
+            // 'email' => [
+            //   'required',
+            //   'string',
+            //   'max:256',
+            //   Rule::unique('users', 'email')->ignore('id')->where('exist', 1),
+            // ],
+            'introduction' => 'nullable|string|max:200',
+        ]);
+
         $inputs = $request -> all();
 
         \DB::beginTransaction();

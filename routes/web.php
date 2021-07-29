@@ -30,6 +30,8 @@ Route::get('/users/{id}/edit', [App\Http\Controllers\UserController::class,  "ed
 
 Route::post('/users/{id}', [App\Http\Controllers\UserController::class,  "update"])->name('users.update');
 
+
+
 // QuestionController
 
 Route::resource('/questions', App\Http\Controllers\QuestionController::class, ['only' => ['index', 'create', 'show', 'destroy']]);
