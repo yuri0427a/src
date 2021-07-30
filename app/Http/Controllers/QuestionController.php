@@ -13,7 +13,9 @@ class QuestionController extends Controller
 
     public function store(QuestionRequest $request)
     {
-        Question::create([
+        $question = Question::create([
+            'title' => $request->title,
+            'contents' => $request->contents,
             'user_id' => auth()->user()->id,
         ]);
         \Session::flash('success', 'ブログを投稿しました');

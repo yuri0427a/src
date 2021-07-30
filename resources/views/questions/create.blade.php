@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="{{ route('questions.store') }}">
+<form method="POST" action="{{ route('questions.store', ) }}">
     @csrf
         <div class="form-group">
           <label for="title">
