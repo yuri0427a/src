@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -24,17 +24,28 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // UserController
 
-Route::get('/users/{id}', [App\Http\Controllers\UserController::class,  "show"])->name("users.show");
+Route::get('/users/{id}', [App\Http\Controllers\UserController::class,  "show"])
+->middleware('auth')->name("users.show");
 
-Route::get('/users/{id}/edit', [App\Http\Controllers\UserController::class,  "edit"])->name("users.edit");
 
-Route::post('/users/{id}', [App\Http\Controllers\UserController::class,  "update"])->name('users.update');
+Route::get('/users/{id}/edit', [App\Http\Controllers\UserController::class,  "edit"])
+->middleware('auth')->name("users.edit");
 
+Route::post('/users/{id}', [App\Http\Controllers\UserController::class,  "update"])
+->middleware('auth')->name('users.update');
 
 
 // QuestionController
 
-Route::resource('/questions', App\Http\Controllers\QuestionController::class, ['only' => ['index', 'create', 'show', 'destroy']]);
+Route::get('/', [App\Http\Controllers\QuestionController::class,  "index"])
+->name("questions.index");
+
+Route::get('/questions/create', [App\Http\Controllers\QuestionController::class,  "create"])->name("questions.create");
+Route::post('/questions/create', [App\Http\Controllers\QuestionController::class,  "store"])->name("questions.store");
+
+
+
+// Route::resource('/questions', App\Http\Controllers\QuestionController::class, ['only' => ['index', 'create', 'show', 'destroy']]);
 
 // CommentController
 

@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->id();
             $table->integer('user_id')->comment('ユーザーID');
             $table->string('title', 50)->comment('題名');
-            $table->string('contents', 100)->nullable()->comment('内容');
+            $table->string('contents', 2000)->nullable()->comment('内容');
             $table->timestamps();
         });
     }
