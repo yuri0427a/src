@@ -18,7 +18,7 @@ class QuestionController extends Controller
             'contents' => $request->contents,
             'user_id' => auth()->user()->id,
         ]);
-        \Session::flash('success', 'ブログを投稿しました');
+        \Session::flash('success', 'お題を投稿しました');
 
         return redirect(route('questions.index'));
     }
@@ -28,6 +28,14 @@ class QuestionController extends Controller
         $questions = Question::all();
 
         return view('questions.index', compact('questions'));
+    }
+
+
+    public function show($id)
+    {
+        $question = Question::find($id);
+
+        return view('questions.show', compact('question'));
     }
 
 

@@ -36,9 +36,14 @@ Route::post('/users/{id}', [App\Http\Controllers\UserController::class,  "update
 Route::get('/', [App\Http\Controllers\QuestionController::class,  "index"])
 ->name("questions.index");
 
-Route::get('/questions/create', [App\Http\Controllers\QuestionController::class,  "create"])->name("questions.create");
-Route::post('/questions/create', [App\Http\Controllers\QuestionController::class,  "store"])->name("questions.store");
+Route::get('/questions/create', [App\Http\Controllers\QuestionController::class,  "create"])
+->middleware('auth')->name("questions.create");
 
+Route::post('/questions/create', [App\Http\Controllers\QuestionController::class,  "store"])
+->middleware('auth')->name("questions.store");
+
+Route::get('/questions/{id}', [App\Http\Controllers\QuestionController::class,  "show"])
+->name("questions.show");
 
 
 // Route::resource('/questions', App\Http\Controllers\QuestionController::class, ['only' => ['index', 'create', 'show', 'destroy']]);
