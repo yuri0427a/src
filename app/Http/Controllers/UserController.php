@@ -46,8 +46,8 @@ class UserController extends Controller
             $user->save();
             \DB::commit();
         } catch(\Throwable $e){
-            // \DB::rollback();
-            // abort(500);
+            \DB::rollback();
+            abort(500);
         }
         \Session::flash('success', 'プロフィールを更新しました');
          return redirect(route('users.show', $id));

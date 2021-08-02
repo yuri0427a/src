@@ -38,5 +38,19 @@ class QuestionController extends Controller
         return view('questions.show', compact('question'));
     }
 
+    public function destroy($id){
 
+       if(empty($id)){
+        \Session::flash('err_msg', 'データがありません');
+        return redirect(route('questions.show'));
+       }
+
+       try{
+        Question::destroy($id);
+        } catch(\Throwable $e){
+            abort(500);
+        }
+        \Session::flash('err_msg', '削除しました');
+            return redirect(route('questions.index'));
+    }
 }
