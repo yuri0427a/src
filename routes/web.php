@@ -45,8 +45,9 @@ Route::post('/questions/create', [App\Http\Controllers\QuestionController::class
 Route::get('/questions/{id}', [App\Http\Controllers\QuestionController::class,  "show"])
 ->name("questions.show");
 
+Route::delete('/questions/{id}', [App\Http\Controllers\QuestionController::class,  "destroy"])
+->middleware('auth')->name("questions.destroy");
 
-// Route::resource('/questions', App\Http\Controllers\QuestionController::class, ['only' => ['index', 'create', 'show', 'destroy']]);
 
 // CommentController
 
