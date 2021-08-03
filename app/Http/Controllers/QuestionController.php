@@ -35,7 +35,7 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
-        $votes= Vote::all();
+        $votes= $question->vote;
 
         return view('questions.show', compact('question', 'votes'));
     }

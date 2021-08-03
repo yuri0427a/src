@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Question;
 
 class Vote extends Model
 {
@@ -15,6 +16,12 @@ class Vote extends Model
     protected $fillable = [
         'vote',
         'number',
+        'question_id',
     ];
+
+    public function question()
+    {
+        return $this->belongsTo('App\Models\Question', 'question_id');
+    }
 
 }
