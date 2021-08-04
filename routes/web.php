@@ -53,12 +53,9 @@ Route::delete('/questions/{id}', [App\Http\Controllers\QuestionController::class
 
 Route::resource('/comments', App\Http\Controllers\CommentController::class, ['only' => ['index', 'create', 'destroy']]);
 
-
 // AnswerController
 
 Route::resource('/comment_favorites', App\Http\Controllers\CommentFavoriteController::class, ['only' => ['create', 'destroy']]);
 
-
 // VoteController
-
-Route::resource('/votes', App\Http\Controllers\VoteController::class, ['only' => ['index', 'create']]);
+Route::put('/votes/vote', [App\Http\Controllers\VoteController::class,  "vote"])->name('votes.vote');

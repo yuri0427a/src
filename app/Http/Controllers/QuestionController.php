@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Question;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionRequest;
 class QuestionController extends Controller
@@ -34,8 +35,9 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
+        $votes= $question->vote;
 
-        return view('questions.show', compact('question'));
+        return view('questions.show', compact('question', 'votes'));
     }
 
     public function destroy($id){
