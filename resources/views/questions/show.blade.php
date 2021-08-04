@@ -15,17 +15,13 @@
 	<form method="post" action="{{ route('votes.vote')}}">
 		@csrf
 		@method('put')
-			<div class="form-check">
-				<input name="vote" value="みたらし" type="radio">
-				<label class="form-check-label" for="みたらし">みたらし</label>
-			</div>
-			<div class="form-check">
-				<input name="vote" value="きなこ" type="radio">
-				<label class="form-check-label" for="きなこ">きなこ</label>
-			</div>
-			<div class="text-right">
-			<button type=”submit” class="btn btn-danger btn-primary">投票する</button>
-		</div>
+        @foreach ($votes as $vote)
+            <div class="form-check">
+                <input name="vote" value="{{ $vote->vote }}" type="radio">
+                <label class="form-check-label" for="{{ $vote->vote }}">{{ $vote->vote }}</label>
+            </div>
+　　　　　@endforeach
+         <button type=”submit” class="btn btn-danger btn-primary">投票する</button>
 		</form>
         <!-- 投票のグラフ表示 -->
         <div id="chart" style="height:500px;width:800px;"></div>
@@ -46,7 +42,6 @@
                 ]);
 
                 var options ={
-                    title: '<?php $question->title ?>',
                     is3D: true,
                 };
 
