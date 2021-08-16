@@ -8,6 +8,7 @@ use App\Models\Question;
 
 class Vote extends Model
 {
+
         /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +19,10 @@ class Vote extends Model
         'number',
         'question_id',
     ];
+
+    protected $table = 'votes';
+
+    protected $guarded = ['id'];
 
     public function question()
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Question;
 use App\Models\Vote;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionRequest;
 class QuestionController extends Controller
@@ -14,15 +15,39 @@ class QuestionController extends Controller
 
     public function store(QuestionRequest $request)
     {
-        $question = Question::create([
+
+        DB::beginTransaction();
+        try{
+        $question = new Question($request->get('question',[
             'title' => $request->title,
             'contents' => $request->contents,
             'user_id' => auth()->user()->id,
-        ]);
-        \Session::flash('success', 'お題を投稿しました');
+        ]));
 
-        return redirect(route('questions.index'));
+        $question->save();
+
+        $votes = $request->all();
+
+        foreach ($votes['vote'] as $vote) {
+            foreach ($vote as $key => $value) {
+                $data = [
+                    'vote' => $value,
+                    'question_id' => $question->id,
+                ];
+
+                $vote = Vote::insert($data);
+            }
+        }
+
+    }catch(Exception $e){
+        DB::rollback();
+        return back()->withInput();
     }
+    DB::commit();
+    return redirect(route('questions.index'));
+}
+
+
 
     public function index()
     {

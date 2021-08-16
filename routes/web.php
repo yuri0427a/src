@@ -39,7 +39,7 @@ Route::get('/', [App\Http\Controllers\QuestionController::class,  "index"])
 Route::get('/questions/create', [App\Http\Controllers\QuestionController::class,  "create"])
 ->middleware('auth')->name("questions.create");
 
-Route::post('/questions/create', [App\Http\Controllers\QuestionController::class,  "store"])
+Route::post('/questions/store', [App\Http\Controllers\QuestionController::class,  "store"])
 ->middleware('auth')->name("questions.store");
 
 Route::get('/questions/{id}', [App\Http\Controllers\QuestionController::class,  "show"])
