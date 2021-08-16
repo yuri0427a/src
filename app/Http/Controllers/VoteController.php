@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Vote;
+use App\Models\Question;
 
 use Illuminate\Http\Request;
 

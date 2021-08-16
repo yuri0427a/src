@@ -17,7 +17,7 @@ class CreateVotesTable extends Migration
             $table->id();
             $table->integer('question_id')->comment('お題ID');
             $table->string('vote')->comment('選択肢');
-            $table->integer('number')->comment('投票数');
+            $table->integer('number')->default(0)->comment('投票数');
             $table->timestamps();
         });
     }

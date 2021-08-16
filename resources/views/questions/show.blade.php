@@ -22,7 +22,7 @@
             </div>
 　　　　　@endforeach
          <button type=”submit” class="btn btn-danger btn-primary">投票する</button>
-		</form>
+	</form>
         <!-- 投票のグラフ表示 -->
         <div id="chart" style="height:500px;width:800px;"></div>
 
