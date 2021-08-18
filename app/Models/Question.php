@@ -25,8 +25,6 @@ class Question extends Model
     protected $table = 'questions';
     protected $dates = ['deleted_at'];
 
-
-
     public function user()
     {
         return $this->belongsTo(User::class);
