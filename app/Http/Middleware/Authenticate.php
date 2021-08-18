@@ -25,6 +25,5 @@ class Authenticate extends Middleware
     protected $user_route  = 'user.login';
     protected $admin_route = 'admin.login';
 
-
 }
 
