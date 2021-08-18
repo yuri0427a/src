@@ -78,3 +78,17 @@ Route::resource('/comment_favorites', App\Http\Controllers\CommentFavoriteContro
 
 // VoteController
 Route::put('/votes/vote', [App\Http\Controllers\VoteController::class,  "vote"])->name('votes.vote');
+
+
+//管理者
+
+// QuestionController
+
+Route::get('/admin/quesitons', [App\Http\Controllers\Admin\QuestionController::class,  "index"])
+->name("admin.questions.index");
+
+Route::get('/admin/questions/{id}', [App\Http\Controllers\Admin\QuestionController::class,  "show"])
+->name("admin.questions.show");
+
+Route::delete('/admin/questions/{id}', [App\Http\Controllers\Admin\QuestionController::class,  "destroy"])
+->middleware('auth:admin')->name("admin.questions.destroy");

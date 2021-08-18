@@ -67,11 +67,6 @@ class QuestionController extends Controller
 
     public function destroy($id){
 
-       if(empty($id)){
-        \Session::flash('err_msg', 'データがありません');
-        return redirect(route('questions.show'));
-       }
-
        try{
         Question::destroy($id);
         } catch(\Throwable $e){
