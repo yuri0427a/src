@@ -19,6 +19,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
+    // Adminのリダイレクト先
+    public const ADMIN_HOME = '/admin/home';
+
     /**
      * The controller namespace for the application.
      *

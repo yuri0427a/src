@@ -17,6 +17,25 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// 管理者
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    // ログイン認証関連
+    Auth::routes([
+        'register' => true,
+        'reset'    => false,
+        'verify'   => false
+    ]);
+
+    // ログイン認証後
+    Route::middleware('auth:admin')->group(function () {
+
+        // TOPページ
+        Route::resource('/home', App\Http\Controllers\Admin\HomeController::class, ['only' => 'index']);
+
+    });
+
+});
 
 // UserController
 
