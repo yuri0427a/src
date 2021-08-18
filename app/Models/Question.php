@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Vote;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Question extends Model
 {
@@ -16,6 +18,14 @@ class Question extends Model
         'contents',
         'user_id',
     ];
+
+    use SoftDeletes;
+
+    // 論理削除
+    protected $table = 'questions';
+    protected $dates = ['deleted_at'];
+
+
 
     public function user()
     {
