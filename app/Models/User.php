@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -24,6 +25,12 @@ class User extends Authenticatable
         'introduction',
         'password',
     ];
+
+    use SoftDeletes;
+
+    // 論理削除
+    protected $table = 'users';
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that should be hidden for arrays.
