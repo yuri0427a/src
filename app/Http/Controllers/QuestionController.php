@@ -6,6 +6,7 @@ use App\Models\Vote;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionRequest;
+
 class QuestionController extends Controller
 {
     public function create()
@@ -39,15 +40,13 @@ class QuestionController extends Controller
             }
         }
 
-    }catch(Exception $e){
-        DB::rollback();
-        return back()->withInput();
-    }
-    DB::commit();
-    return redirect(route('questions.index'));
+        }catch(Exception $e){
+            DB::rollback();
+            return back()->withInput();
+        }
+        DB::commit();
+        return redirect(route('questions.index'));
 }
-
-
 
     public function index()
     {
@@ -56,13 +55,13 @@ class QuestionController extends Controller
         return view('questions.index', compact('questions'));
     }
 
-
     public function show($id)
     {
         $question = Question::find($id);
         $votes= $question->vote;
+        $comments= $question->comment;
 
-        return view('questions.show', compact('question', 'votes'));
+        return view('questions.show', compact('question', 'votes', 'comments'));
     }
 
     public function destroy(Request $request)

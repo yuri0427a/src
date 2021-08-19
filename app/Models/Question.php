@@ -35,5 +35,10 @@ class Question extends Model
         return $this->hasMany(Vote::class, 'question_id');
     }
 
+    // コメントのリレーション
+    public function comment()
+       {
+           return $this->hasMany(Comment::class, 'question_id');
+       }
 
 }
