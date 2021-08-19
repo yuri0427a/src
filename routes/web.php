@@ -87,8 +87,22 @@ Route::put('/votes/vote', [App\Http\Controllers\VoteController::class,  "vote"])
 Route::get('/admin/quesitons', [App\Http\Controllers\Admin\QuestionController::class,  "index"])
 ->name("admin.questions.index");
 
-Route::get('/admin/questions/{id}', [App\Http\Controllers\Admin\QuestionController::class,  "show"])
-->name("admin.questions.show");
-
 Route::delete('/admin/questions/{id}', [App\Http\Controllers\Admin\QuestionController::class,  "destroy"])
 ->middleware('auth:admin')->name("admin.questions.destroy");
+
+// UserController
+
+Route::get('/admin/users', [App\Http\Controllers\Admin\UserController::class,  "index"])
+->name("admin.users.index");
+
+Route::get('/admin/users/{id}', [App\Http\Controllers\Admin\UserController::class,  "show"])
+->middleware('auth:admin')->name("admin.users.show");
+
+Route::get('/admin/users/{id}/edit', [App\Http\Controllers\Admin\UserController::class,  "edit"])
+->middleware('auth:admin')->name("admin.users.edit");
+
+Route::post('/admin/users/{id}', [App\Http\Controllers\Admin\UserController::class,  "update"])
+->middleware('auth:admin')->name("admin.users.update");
+
+Route::delete('/admin/users/{id}', [App\Http\Controllers\Admin\UserController::class,  "destroy"])
+->middleware('auth:admin')->name("admin.users.destroy");
