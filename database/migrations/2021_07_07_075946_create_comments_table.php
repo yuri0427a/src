@@ -19,6 +19,8 @@ class CreateCommentsTable extends Migration
             $table->integer('question_id')->comment('お題ID');
             $table->string('message', 100)->comment('メッセージ');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

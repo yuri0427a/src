@@ -56,4 +56,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Question::class, 'user_id');
     }
+
+    // コメントのリレーション
+    public function comment()
+    {
+        return $this->hasMany(Comment::class, 'user_id');
+    }
 }

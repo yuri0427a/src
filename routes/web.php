@@ -67,17 +67,20 @@ Route::get('/questions/{id}', [App\Http\Controllers\QuestionController::class,  
 Route::delete('/questions/{id}', [App\Http\Controllers\QuestionController::class,  "destroy"])
 ->middleware('auth')->name("questions.destroy");
 
+// VoteController
+Route::put('/votes/vote', [App\Http\Controllers\VoteController::class,  "vote"])->name('votes.vote');
 
 // CommentController
 
-Route::resource('/comments', App\Http\Controllers\CommentController::class, ['only' => ['index', 'create', 'destroy']]);
+Route::get('/comments', [App\Http\Controllers\CommentController::class,  "index"])
+->name("comments.index");
 
-// AnswerController
+Route::post('/comments/store', [App\Http\Controllers\CommentController::class,  "store"])
+->middleware('auth')->name("comments.store");
 
-Route::resource('/comment_favorites', App\Http\Controllers\CommentFavoriteController::class, ['only' => ['create', 'destroy']]);
+Route::delete('/comments/{id}', [App\Http\Controllers\CommentController::class,  "destroy"])
+->middleware('auth')->name("comments.destroy");
 
-// VoteController
-Route::put('/votes/vote', [App\Http\Controllers\VoteController::class,  "vote"])->name('votes.vote');
 
 
 //管理者
@@ -106,3 +109,8 @@ Route::post('/admin/users/{id}', [App\Http\Controllers\Admin\UserController::cla
 
 Route::delete('/admin/users/{id}', [App\Http\Controllers\Admin\UserController::class,  "destroy"])
 ->middleware('auth:admin')->name("admin.users.destroy");
+
+
+// CommentController
+
+

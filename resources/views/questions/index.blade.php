@@ -7,5 +7,6 @@
         {{ $question ->id }}
         {{ $question->title }}
         {{ $question->contents }}
+</a>
  @endforeach
  @endsection
